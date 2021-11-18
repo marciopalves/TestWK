@@ -2,10 +2,8 @@ unit uPedidoModel;
 
 interface
 
-Uses uClienteModel, uProdutoModel, uItemModel, uPedidoDao,
-     System.Generics.Collections, System.SysUtils;
-
-
+Uses uClienteModel, uProdutoModel, uItemModel,
+     System.Generics.Collections, System.SysUtils, uAcaoEnum;
 
 type
   TPedido = class
@@ -16,15 +14,17 @@ type
     FNumero: Double;
     FDAta: TDate;
     FListaItens: TobjectList<TItemPedido>;
-    FIdPedido: Double;
+    FIdPedido: Integer;
+    FState: TACAO;
 
     public
-       property IdPedido: Double read FIdPedido write FIdPedido;
+       property IdPedido: Integer read FIdPedido write FIdPedido;
        property Numero: Double read FNumero write FNumero;
        property Data: TDate read FDAta write FData;
        property Cliente: TCliente read FCliente write FCliente;
        property ListaItens: TobjectList<TItemPedido> read FListaItens write FListaItens;
        property Total: Double read FTotal;
+       property State : TACAO read FState write FState;
 
        Constructor create;
        destructor destroy; Override;
@@ -66,10 +66,8 @@ begin
 end;
 
 procedure TPedido.RemoverItem(const pCodigo: Double);
-Var
-  vPedidoDao: TPedidoDao;
 begin
-  vPedidoDao.Excluir(pCodigo);
+  //vPedidoDao.Excluir(pCodigo);
 
   SetTotal;
 end;

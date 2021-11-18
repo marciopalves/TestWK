@@ -2,12 +2,12 @@ unit uItemModel;
 
 interface
 
-uses uProdutoModel;
+uses uProdutoModel, uAcaoEnum;
 
 type
   TItemPedido = class
   private
-    FIdPedido: Double;
+    FIdPedido: Integer;
     FIdItem: Double;
     FProduto: TProduto;
     FQtd: Double;
@@ -16,11 +16,12 @@ type
     procedure TotalizarItem;
 
   public
-    property IdPedido: Double read FIdPedido write FIdPedido;
+    property IdPedido: Integer read FIdPedido write FIdPedido;
     property IdItem: Double read FIdItem write FIdItem;
     property Produto: TProduto read FProduto;
     property Qtd: Double read FQtd;
     property TotalItem: Double read FTotalItem;
+
 
     procedure SetQtd(const pValue: Double);
     procedure SetProduto(const pValue: TProduto);
