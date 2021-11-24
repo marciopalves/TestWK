@@ -73,6 +73,7 @@ object frmCadPedido: TfrmCadPedido
         Height = 49
         Caption = 'Alterar'
         TabOrder = 1
+        OnClick = btnAlterarClick
       end
       object Button2: TButton
         Left = 156
@@ -166,6 +167,7 @@ object frmCadPedido: TfrmCadPedido
           TitleFont.Height = -11
           TitleFont.Name = 'Tahoma'
           TitleFont.Style = []
+          OnKeyPress = dbgItensKeyPress
           Columns = <
             item
               Expanded = False
@@ -265,7 +267,7 @@ object frmCadPedido: TfrmCadPedido
           Enabled = False
           TabOrder = 2
         end
-        object DateTimePicker1: TDateTimePicker
+        object dtpDataCad: TDateTimePicker
           Left = 487
           Top = 17
           Width = 80
@@ -320,16 +322,17 @@ object frmCadPedido: TfrmCadPedido
           Height = 25
           Caption = 'Incluir'
           TabOrder = 0
+          OnClick = btnInserirItemClick
         end
-        object Edit1: TEdit
+        object edtCodProd: TEdit
           Left = 15
           Top = 17
           Width = 42
           Height = 21
           TabOrder = 1
-          OnExit = Edit1Exit
+          OnExit = edtCodProdExit
         end
-        object Edit2: TEdit
+        object edtDescricaoProduto: TEdit
           Left = 61
           Top = 17
           Width = 326
@@ -337,7 +340,7 @@ object frmCadPedido: TfrmCadPedido
           Enabled = False
           TabOrder = 2
         end
-        object Edit3: TEdit
+        object edtPreco: TEdit
           Left = 391
           Top = 17
           Width = 89
@@ -347,7 +350,7 @@ object frmCadPedido: TfrmCadPedido
           TabOrder = 3
           Text = '0'
         end
-        object Edit4: TEdit
+        object edtQtd: TEdit
           Left = 487
           Top = 17
           Width = 66
@@ -355,7 +358,7 @@ object frmCadPedido: TfrmCadPedido
           Alignment = taRightJustify
           TabOrder = 4
           Text = '0'
-          OnKeyPress = Edit4KeyPress
+          OnKeyPress = edtQtdKeyPress
         end
       end
       object pnlRodape: TPanel

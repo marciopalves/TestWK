@@ -29,7 +29,7 @@ type
        Constructor create;
        destructor destroy; Override;
 
-       procedure AdcionarItem(const pProduto: TProdutoModel; const pQtd: Double);
+       procedure AdcionarItem(const pItem: TItemPedido);
        procedure RemoverItem(const pCodigo: Double);
        procedure SetTotal;
 
@@ -39,15 +39,15 @@ implementation
 
 { Pedido }
 
-procedure TPedido.AdcionarItem(const pProduto: TProdutoModel; const pQtd: Double);
+procedure TPedido.AdcionarItem(const pItem: TItemPedido);
 Var
   vCont: Integer;
 begin
   FListaItens.Add(TItemPedido.Create);
   vCont := FListaItens.Count - 1;
   FListaItens[vCont].IdPedido  := IdPedido;
-  FListaItens[vCont].SetProduto(pProduto);
-  FListaItens[vCont].SetQtd(pQtd);
+  FListaItens[vCont].SetProduto(pItem.Produto);
+  FListaItens[vCont].SetQtd(pItem.Qtd);
 
   SetTotal;
 end;
@@ -66,9 +66,18 @@ begin
 end;
 
 procedure TPedido.RemoverItem(const pCodigo: Double);
+Var
+  Item: TItemPedido;
+  vCont: Integer;
 begin
-  //vPedidoDao.Excluir(pCodigo);
-
+  for vCont := pred(ListaItens.Count) downto 0 do
+  begin
+    if Item.Produto.Codigo = pCodigo then
+    begin
+      ListaItens.delete(Item);
+      Break;
+    end;
+  end;
   SetTotal;
 end;
 

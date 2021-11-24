@@ -15,7 +15,7 @@ Uses FireDAC.Comp.Client, FireDAC.DatS, FireDac.Phys, uPedidoModel, uItemModel,
       function Incluir(pPedido: TPedido):Boolean;
       function Alterar(pPedido: TPedido):Boolean;
       function Excluir(const pCodigo: Integer):Boolean;
-      function RemoverItem(const pCodigoItem: Integer):Boolean;
+      function RemoverItens(const pCodigoItem: Integer):Boolean;
       function BuscaPedido(const pNumero: Integer):TFDQuery;
       function BuscaItensPedido(const pId: Integer):TFDQuery;
       function ProximoNumero: Integer;
@@ -30,14 +30,14 @@ implementation
 uses uDmConexao, System.SysUtils;
 
 Const
-  SQL_DELETE_ITEM = 'DELETE FROM ITENSPEDIDO WHERE IDPEDIDO = :ID';
+  SQL_DELETE_ITENS = 'DELETE FROM ITENSPEDIDO WHERE IDPEDIDO = :ID';
 
 constructor TPedidoDao.Create;
 begin
 
 end;
 
-function TPedidoDao.RemoverItem(const pCodigoItem: Integer): Boolean;
+function TPedidoDao.RemoverItens(const pCodigoItem: Integer): Boolean;
 Var
   vQry: TFDQuery;
   vTransacao: Boolean; // Para saber se já estava em transação na chamada do metodo
@@ -48,7 +48,7 @@ begin
     vQry.Connection := DMConexao.FDConnection;
     vQry.Close;
     vQry.SQL.Clear;
-    vQry.SQL.Add(SQL_DELETE_ITEM);
+    vQry.SQL.Add(SQL_DELETE_ITENS);
     vQry.ParamByName('ID').AsInteger := pCodigoItem;
     try
       vTransacao := DMConexao.FDConnection.InTransaction;
@@ -232,7 +232,7 @@ begin
     vQry.SQL.Clear;
     try
       DMConexao.FDConnection.StartTransaction;
-      RemoverItem(pCodigo);
+      RemoverItens(pCodigo);
 
       vQry.SQL.Add('DELETE FROM PEDIDO WHERE IDPEDIDO = :ID');
       vQry.ParamByName('ID').AsInteger := pCodigo;
