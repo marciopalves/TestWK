@@ -9,7 +9,7 @@ type
   private
     FIdPedido: Integer;
     FIdItem: Double;
-    FProduto: TProduto;
+    FProduto: TProdutoModel;
     FQtd: Double;
     FTotalItem: Double;
 
@@ -18,20 +18,20 @@ type
   public
     property IdPedido: Integer read FIdPedido write FIdPedido;
     property IdItem: Double read FIdItem write FIdItem;
-    property Produto: TProduto read FProduto;
+    property Produto: TProdutoModel read FProduto;
     property Qtd: Double read FQtd;
     property TotalItem: Double read FTotalItem;
 
 
     procedure SetQtd(const pValue: Double);
-    procedure SetProduto(const pValue: TProduto);
+    procedure SetProduto(const pValue: TProdutoModel);
   end;
 
 implementation
 
 { TItemPedido }
 
-procedure TItemPedido.SetProduto(const pValue: TProduto);
+procedure TItemPedido.SetProduto(const pValue: TProdutoModel);
 begin
   FProduto := pValue;
   TotalizarItem;

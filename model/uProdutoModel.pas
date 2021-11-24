@@ -3,7 +3,7 @@ unit uProdutoModel;
 interface
 
 type
-  TProduto = class
+  TProdutoModel = class
   private
     FPreco: Double;
     FDescricao: String;
@@ -20,7 +20,7 @@ implementation
 
 { TProduto }
 
-constructor TProduto.create(const pCodigo: Double; const pDescricao: String;
+constructor TProdutoModel.create(const pCodigo: Double; const pDescricao: String;
   const pPreco: Double);
 begin
   self.Codigo    := pCodigo;

@@ -3,7 +3,7 @@ unit uClienteModel;
 interface
 
 type
-  TCliente = class
+  TClienteModel = class
   private
     FUf: String;
     FCodigo: Double;
@@ -23,7 +23,7 @@ implementation
 
 { TCliente }
 
-constructor TCliente.Create(const PCodigo: Double; const PNome, PCidade,
+constructor TClienteModel.Create(const PCodigo: Double; const PNome, PCidade,
   pUf: String);
 begin
   self.Codigo := pCodigo;

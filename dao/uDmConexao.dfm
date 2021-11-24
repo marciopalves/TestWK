@@ -3,6 +3,7 @@ object DMConexao: TDMConexao
   Height = 305
   Width = 527
   object FDPhysMySQLDriverLink: TFDPhysMySQLDriverLink
+    VendorLib = 'D:\delphi\TestWK\libmysql.dll'
     Left = 56
     Top = 104
   end

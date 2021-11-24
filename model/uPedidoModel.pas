@@ -9,7 +9,7 @@ type
   TPedido = class
   private
     FCodigo: Double;
-    FCliente: TCliente;
+    FCliente: TClienteModel;
     FTotal: Double;
     FNumero: Double;
     FDAta: TDate;
@@ -21,7 +21,7 @@ type
        property IdPedido: Integer read FIdPedido write FIdPedido;
        property Numero: Double read FNumero write FNumero;
        property Data: TDate read FDAta write FData;
-       property Cliente: TCliente read FCliente write FCliente;
+       property Cliente: TClienteModel read FCliente write FCliente;
        property ListaItens: TobjectList<TItemPedido> read FListaItens write FListaItens;
        property Total: Double read FTotal;
        property State : TACAO read FState write FState;
@@ -29,7 +29,7 @@ type
        Constructor create;
        destructor destroy; Override;
 
-       procedure AdcionarItem(const pProduto: TProduto; const pQtd: Double);
+       procedure AdcionarItem(const pProduto: TProdutoModel; const pQtd: Double);
        procedure RemoverItem(const pCodigo: Double);
        procedure SetTotal;
 
@@ -39,7 +39,7 @@ implementation
 
 { Pedido }
 
-procedure TPedido.AdcionarItem(const pProduto: TProduto; const pQtd: Double);
+procedure TPedido.AdcionarItem(const pProduto: TProdutoModel; const pQtd: Double);
 Var
   vCont: Integer;
 begin

@@ -13,7 +13,10 @@ uses
   uItemModel in 'model\uItemModel.pas',
   uPedidoDao in 'dao\uPedidoDao.pas',
   uDmConexao in 'dao\uDmConexao.pas' {DMConexao: TDataModule},
-  uPedidoControl in 'Controler\uPedidoControl.pas';
+  uPedidoControl in 'Controler\uPedidoControl.pas',
+  uFrmPesqCliente in 'view\uFrmPesqCliente.pas' {frmPesqClientes: TFrame},
+  uClienteControl in 'Controler\uClienteControl.pas',
+  uProdutoControl in 'Controler\uProdutoControl.pas';
 
 {$R *.res}
 
@@ -21,7 +24,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TfrmCadPedido, frmCadPedido);
   Application.CreateForm(TDMConexao, DMConexao);
   Application.Run;
 end.

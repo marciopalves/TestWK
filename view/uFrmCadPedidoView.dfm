@@ -20,7 +20,6 @@ object frmCadPedido: TfrmCadPedido
     Height = 57
     Align = alTop
     TabOrder = 0
-    ExplicitWidth = 635
     object Label1: TLabel
       Left = 16
       Top = 8
@@ -58,7 +57,6 @@ object frmCadPedido: TfrmCadPedido
       Height = 55
       Align = alRight
       TabOrder = 2
-      ExplicitLeft = 400
       object btnIncluir: TButton
         Left = 8
         Top = 1
@@ -95,10 +93,8 @@ object frmCadPedido: TfrmCadPedido
     ActivePage = tsPedido
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 635
     object tsPesquisa: TTabSheet
       Caption = 'Pesquisa'
-      ExplicitWidth = 627
       object grdPedidos: TDBGrid
         Left = 0
         Top = 0
@@ -150,9 +146,6 @@ object frmCadPedido: TfrmCadPedido
     object tsPedido: TTabSheet
       Caption = 'Pedido'
       ImageIndex = 1
-      ExplicitLeft = 16
-      ExplicitTop = 40
-      ExplicitWidth = 627
       object pnlItens: TPanel
         Left = 0
         Top = 105
@@ -160,7 +153,56 @@ object frmCadPedido: TfrmCadPedido
         Height = 70
         Align = alTop
         TabOrder = 0
-        ExplicitTop = 144
+        object dbgItens: TDBGrid
+          Left = 1
+          Top = 1
+          Width = 692
+          Height = 68
+          Align = alClient
+          DataSource = dsItens
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+          TitleFont.Style = []
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'IdItem'
+              Title.Caption = 'Cod. Item'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'CodProd'
+              Title.Caption = 'Cod. Produto'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Descricao'
+              Title.Caption = 'Descri'#231#227'o'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Qtd'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Preco'
+              Title.Caption = 'Pre'#231'o'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'TotalItem'
+              Title.Caption = 'Total Item'
+              Visible = True
+            end>
+        end
       end
       object pnlCabecalhoPedido: TPanel
         Left = 0
@@ -210,6 +252,7 @@ object frmCadPedido: TfrmCadPedido
           Top = 17
           Width = 42
           Height = 21
+          Hint = 'F2 Para Pesquisa de clientes'
           TabOrder = 1
           OnExit = edtCodCliExit
         end
@@ -218,6 +261,7 @@ object frmCadPedido: TfrmCadPedido
           Top = 17
           Width = 326
           Height = 21
+          Hint = 'F2 Para Pesquisa de clientes'
           Enabled = False
           TabOrder = 2
         end
@@ -367,5 +411,48 @@ object frmCadPedido: TfrmCadPedido
   object dsPedido: TDataSource
     DataSet = qryPedido
     Left = 374
+  end
+  object qryItens: TFDQuery
+    Connection = DMConexao.FDConnection
+    Left = 308
+    Top = 201
+    object qryItensIdItem: TIntegerField
+      FieldName = 'IdItem'
+    end
+    object qryItensIdPedido: TIntegerField
+      FieldName = 'IdPedido'
+    end
+    object qryItensCodProd: TIntegerField
+      FieldName = 'CodProd'
+    end
+    object qryItensQtd: TFloatField
+      FieldName = 'Qtd'
+    end
+    object qryItensPreco: TFloatField
+      FieldName = 'Preco'
+    end
+    object qryItensTotalItem: TFloatField
+      FieldName = 'TotalItem'
+    end
+    object qryItensDescricao: TStringField
+      FieldName = 'Descricao'
+    end
+  end
+  object dsItens: TDataSource
+    DataSet = qryItens
+    Left = 364
+    Top = 202
+  end
+  object ActionList: TActionList
+    Left = 604
+    Top = 218
+    object actPesquisarCliente: TAction
+      Caption = 'actPesquisarCliente'
+      ShortCut = 113
+      OnExecute = actPesquisarClienteExecute
+    end
+    object actPesquisarProduto: TAction
+      Caption = 'actPesquisarProduto'
+    end
   end
 end

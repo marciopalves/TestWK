@@ -8,7 +8,8 @@ uses
   Vcl.ExtCtrls, Data.DB, Vcl.Grids,   Vcl.DBGrids, Vcl.ComCtrls, Vcl.StdCtrls,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error,
   FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async,
-  FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client, uPedidoControl;
+  FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client, uPedidoControl,
+  System.Actions, Vcl.ActnList, uFrmPesqCliente;
 
 type
   TfrmCadPedido = class(TForm)
@@ -55,6 +56,19 @@ type
     pnlRodape: TPanel;
     btnConfirmar: TButton;
     btnCancelar: TButton;
+    dbgItens: TDBGrid;
+    qryItens: TFDQuery;
+    dsItens: TDataSource;
+    qryItensIdItem: TIntegerField;
+    qryItensIdPedido: TIntegerField;
+    qryItensCodProd: TIntegerField;
+    qryItensQtd: TFloatField;
+    qryItensPreco: TFloatField;
+    qryItensTotalItem: TFloatField;
+    qryItensDescricao: TStringField;
+    ActionList: TActionList;
+    actPesquisarCliente: TAction;
+    actPesquisarProduto: TAction;
     procedure edtNumeroPesqKeyPress(Sender: TObject; var Key: Char);
     procedure btnPesqPedidoClick(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -63,6 +77,7 @@ type
     procedure Edit4KeyPress(Sender: TObject; var Key: Char);
     procedure Edit1Exit(Sender: TObject);
     procedure btnConfirmarClick(Sender: TObject);
+    procedure actPesquisarClienteExecute(Sender: TObject);
   private
     { Private declarations }
     vPedidoControl: TPedidoControl;
@@ -79,6 +94,14 @@ implementation
 {$R *.dfm}
 
 uses uDmConexao;
+
+procedure TfrmCadPedido.actPesquisarClienteExecute(Sender: TObject);
+begin
+  if frmPesqClientes = nil then
+    Application.CreateForm(TfrmPesqClientes, frmPesqClientes);
+  frmPesqClientes.showModal;
+  vPedidoControl.Pedido.Cliente := frmPesqClientes.Cliente;
+end;
 
 procedure TfrmCadPedido.btnConfirmarClick(Sender: TObject);
 begin
